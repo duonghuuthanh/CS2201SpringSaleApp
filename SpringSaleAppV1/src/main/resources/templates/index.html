@@ -1,0 +1,35 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Trang chủ</title>
+        <th:block th:replace="base :: styles"></th:block>
+    </head>
+    <body>
+        <div th:replace="base :: header"></div>
+        
+        <section class="container">
+            <a th:href="@{/products}" class="btn btn-success m-2">Thêm sản phẩm</a>
+            <table class="table">
+            <tr>
+                <th></th>
+                <th>Tên sản phẩm</th>
+                <th>Gía sản phẩm</th>
+                <th></th>
+            </tr>
+            <tr th:each="p: ${products}">
+                <td>
+                    <img th:src="${p.image}" width="300" />
+                </td>
+                <td th:text="${p.name}"></td>
+                <td th:text="${p.price + ' VNĐ'}"></td>
+                <td>
+                    <button class="btn btn-danger">&times;</button>
+                    <a href="#" class="btn btn-info">&#128393;</a>
+                </td>
+            </tr>
+        </table>
+        </section>
+        
+        <div th:replace="base :: footer"></div>
+    </body>
+</html>
