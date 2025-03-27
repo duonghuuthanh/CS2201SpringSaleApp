@@ -65,15 +65,15 @@ public class Product implements Serializable {
     private Date createdDate;
     @Column(name = "active")
     private Boolean active;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "productId")
-    private Set<ProdTag> prodTagSet;
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "productId")
+//    private Set<ProdTag> prodTagSet;
     @JoinColumn(name = "category_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Category categoryId;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "productId")
-    private Set<Comment> commentSet;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "productId")
-    private Set<OrderDetail> orderDetailSet;
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "productId")
+//    private Set<Comment> commentSet;
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "productId")
+//    private Set<OrderDetail> orderDetailSet;
     @Transient
     private MultipartFile file;
 
@@ -153,13 +153,13 @@ public class Product implements Serializable {
         this.active = active;
     }
 
-    public Set<ProdTag> getProdTagSet() {
-        return prodTagSet;
-    }
-
-    public void setProdTagSet(Set<ProdTag> prodTagSet) {
-        this.prodTagSet = prodTagSet;
-    }
+//    public Set<ProdTag> getProdTagSet() {
+//        return prodTagSet;
+//    }
+//
+//    public void setProdTagSet(Set<ProdTag> prodTagSet) {
+//        this.prodTagSet = prodTagSet;
+//    }
 
     public Category getCategoryId() {
         return categoryId;
@@ -169,21 +169,21 @@ public class Product implements Serializable {
         this.categoryId = categoryId;
     }
 
-    public Set<Comment> getCommentSet() {
-        return commentSet;
-    }
+//    public Set<Comment> getCommentSet() {
+//        return commentSet;
+//    }
+//
+//    public void setCommentSet(Set<Comment> commentSet) {
+//        this.commentSet = commentSet;
+//    }
 
-    public void setCommentSet(Set<Comment> commentSet) {
-        this.commentSet = commentSet;
-    }
-
-    public Set<OrderDetail> getOrderDetailSet() {
-        return orderDetailSet;
-    }
-
-    public void setOrderDetailSet(Set<OrderDetail> orderDetailSet) {
-        this.orderDetailSet = orderDetailSet;
-    }
+//    public Set<OrderDetail> getOrderDetailSet() {
+//        return orderDetailSet;
+//    }
+//
+//    public void setOrderDetailSet(Set<OrderDetail> orderDetailSet) {
+//        this.orderDetailSet = orderDetailSet;
+//    }
 
     @Override
     public int hashCode() {

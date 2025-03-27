@@ -82,12 +82,14 @@ public class ProductRepositoryImpl implements ProductRepository {
 
     }
 
+    @Override
     public Product getProductById(int id) {
         Session s = this.factory.getObject().getCurrentSession();
         return s.get(Product.class, id);
 
     }
 
+    @Override
     public Product createOrUpdate(Product p) {
         Session s = this.factory.getObject().getCurrentSession();
         if (p.getId() == null) {
@@ -101,6 +103,7 @@ public class ProductRepositoryImpl implements ProductRepository {
         return p;
     }
 
+    @Override
     public void deleteProduct(int id) {
         Session s = this.factory.getObject().getCurrentSession();
         Product p = this.getProductById(id);
