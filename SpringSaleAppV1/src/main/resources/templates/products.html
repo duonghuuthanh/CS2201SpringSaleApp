@@ -11,7 +11,7 @@
         <section class="container">
             <h1 class="text-center text-info mt-1">QUẢN LÝ SẢN PHẨM</h1>
             
-            <form method="post" th:action="@{/add}" th:object="${product}">
+            <form method="post" th:action="@{/add}" th:object="${product}" enctype="multipart/form-data">
                 <div class="form-floating mb-3 mt-3">
                     <input type="text" class="form-control" th:field="*{name}" id="name" placeholder="Tên sản phẩm">
                     <label for="name">Tên sản phẩm</label>
@@ -26,8 +26,18 @@
                 </select>
                 <label for="category" class="form-label">Danh mục:</label>
                 </div>
+                <div class="form-floating mb-3 mt-3">
+                    <input type="file" class="form-control" th:field="*{file}" id="price" placeholder="Ảnh sản phẩm">
+                    <label for="price">Ảnh sản phẩm</label>
+                    
+                    <img th:src="${product.image}" th:if="${product.id != null && product.image != null}" width="200" />
+                </div>
                 <div class="form-floating mt-1">
-                    <button class="btn btn-success">Thêm sản phẩm</button>
+                    <input type="hidden" th:field="*{id}" />
+                    <input type="hidden" th:field="*{image}" />
+                    
+                    <button class="btn btn-success" th:if="${product.id == null}">Thêm sản phẩm</button>
+                    <button class="btn btn-success" th:unless="${product.id == null}">Cập nhật sản phẩm</button>
                 </div>
             </form>
         </section>

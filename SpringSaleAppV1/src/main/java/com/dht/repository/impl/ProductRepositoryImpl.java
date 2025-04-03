@@ -70,7 +70,7 @@ public class ProductRepositoryImpl implements ProductRepository{
                 
             Query query = s.createQuery(q);
             
-            if (params != null) {
+            if (params != null && params.containsKey("page")) {
                 int page = Integer.parseInt(params.getOrDefault("page", "1"));
                 int start = (page - 1) * PAGE_SIZE;
                 
@@ -99,5 +99,12 @@ public class ProductRepositoryImpl implements ProductRepository{
         Session s = this.factory.getObject().getCurrentSession();
             return s.get(Product.class, id);
         
+    }
+
+    @Override
+    public void deleteProduct(int id) {
+        Session s = this.factory.getObject().getCurrentSession();
+        Product p = this.getProductById(id);
+        s.remove(p);
     }
 }

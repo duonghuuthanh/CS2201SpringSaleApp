@@ -2,14 +2,31 @@
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
         <title>Trang chủ</title>
-        <th:block th:replace="base :: styles"></th:block>
-    </head>
-    <body>
-        <div th:replace="base :: header"></div>
-        
-        <section class="container">
-            <a th:href="@{/products}" class="btn btn-success m-2">Thêm sản phẩm</a>
-            <table class="table">
+    <th:block th:replace="base :: styles"></th:block>
+</head>
+<body>
+    <div th:replace="base :: header"></div>
+
+    <section class="container">
+        <form th:action="@{/}">
+            <div class="mb-3 mt-3">
+              
+                <input type="text" class="form-control" placeholder="Từ khóa" name="kw">
+            </div>
+            <div class="row mb-3 mt-3">
+                <div class="col-6">
+                    <input type="number" class="form-control" placeholder="Gía min" name="fromPrice" />
+                </div>
+                <div class="col-6">
+                    <input type="number" class="form-control" placeholder="Gía max" name="toPrice" />
+                </div>
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+        </form>
+        <hr />
+        <a th:href="@{/products}" class="btn btn-outline-success m-2">Thêm sản phẩm</a>
+        <table class="table">
             <tr>
                 <th></th>
                 <th>Tên sản phẩm</th>
@@ -23,13 +40,15 @@
                 <td th:text="${p.name}"></td>
                 <td th:text="${p.price + ' VNĐ'}"></td>
                 <td>
-                    <button class="btn btn-danger">&times;</button>
-                    <a href="#" class="btn btn-info">&#128393;</a>
+                    <button class="btn btn-danger" th:onclick="'deleteProduct(\''+@{/api/products}+'\',' + ${p.id} + ')'">&times;</button>
+                    <a th:href="@{'/products/' + ${p.id}}" class="btn btn-info">&#128393;</a>
                 </td>
             </tr>
         </table>
-        </section>
-        
-        <div th:replace="base :: footer"></div>
-    </body>
+    </section>
+
+    <div th:replace="base :: footer"></div>
+    
+    <script th:src="@{/js/main.js}"></script>
+</body>
 </html>
