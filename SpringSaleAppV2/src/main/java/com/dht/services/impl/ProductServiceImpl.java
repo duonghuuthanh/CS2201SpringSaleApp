@@ -6,6 +6,7 @@ package com.dht.services.impl;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
+import com.dht.pojo.Comment;
 import com.dht.pojo.Product;
 import com.dht.repositories.ProductRepository;
 import com.dht.services.ProductService;
@@ -57,6 +58,11 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public void deleteProduct(int id) {
         this.prodRepo.deleteProduct(id);
+    }
+
+    @Override
+    public List<Comment> getComments(int productId) {
+        return this.prodRepo.getComments(productId);
     }
 
 }
