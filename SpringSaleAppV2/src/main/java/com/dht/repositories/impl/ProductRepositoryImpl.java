@@ -71,7 +71,7 @@ public class ProductRepositoryImpl implements ProductRepository {
 
         Query query = s.createQuery(q);
 
-        if (params != null) {
+        if (params != null && params.containsKey("page")) {
             int page = Integer.parseInt(params.getOrDefault("page", "1"));
             int start = (page - 1) * PAGE_SIZE;
             query.setMaxResults(PAGE_SIZE);

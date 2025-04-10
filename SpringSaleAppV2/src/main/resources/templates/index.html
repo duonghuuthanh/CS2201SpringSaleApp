@@ -47,7 +47,7 @@
                     <td th:text="${p.name}"></td>
                     <td th:text="${p.price + ' VNĐ'}"></td>
                     <td>
-                        <button class="btn btn-danger">&times;</button>
+                        <button th:onclick="'deleteProduct(\'' + @{/api/products} + '\', ' + ${p.id} + ')'" class="btn btn-danger">&times;</button>
                         <a th:href="@{'/products/' + ${p.id}}" class="btn btn-info">&#128296;</a>
                     </td>
                 </tr>
@@ -57,5 +57,7 @@
     </main>
 
     <div th:replace="base :: footer"></div>
+    
+    <script th:src="@{/js/main.js}"></script>
 </body>
 </html>
