@@ -32,7 +32,7 @@ public class HibernateConfigs {
     public LocalSessionFactoryBean getSessionFactory() {
         LocalSessionFactoryBean sessionFactory
                 = new LocalSessionFactoryBean();
-        sessionFactory.setPackagesToScan(new String[] {
+        sessionFactory.setPackagesToScan(new String[]{
             "com.dht.pojo"
         });
         sessionFactory.setDataSource(dataSource());

@@ -62,11 +62,13 @@ public class User implements Serializable {
     private String username;
     @Basic(optional = false)
     @Column(name = "password")
+    
     private String password;
     @Column(name = "active")
     private Boolean active;
     @Basic(optional = false)
     @Column(name = "user_role")
+    @JsonIgnore
     private String userRole;
     @Column(name = "avatar")
     private String avatar;

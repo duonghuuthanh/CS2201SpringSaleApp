@@ -27,8 +27,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @EnableTransactionManagement
 @ComponentScan(basePackages = {
     "com.dht.controllers",
-    "com.dht.repository",
-    "com.dht.service"
+    "com.dht.repositories",
+    "com.dht.services"
 })
 public class WebAppContextConfigs implements WebMvcConfigurer {
 
@@ -38,21 +38,15 @@ public class WebAppContextConfigs implements WebMvcConfigurer {
     }
 
     @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/js/**").addResourceLocations("classpath:/static/js/");
+    public void addFormatters(FormatterRegistry registry) {
+        registry.addFormatter(new CategoryFormatter());
     }
     
     
 
     @Override
-    public void addFormatters(FormatterRegistry registry) {
-        registry.addFormatter(new CategoryFormatter());
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/js/**").addResourceLocations("classpath:/static/js/");
+                
     }
-
-    @Bean
-    public StandardServletMultipartResolver multipartResolver() {
-        return new StandardServletMultipartResolver();
-    }
-
-    
 }

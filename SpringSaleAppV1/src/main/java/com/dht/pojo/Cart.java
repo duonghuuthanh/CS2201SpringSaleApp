@@ -43,20 +43,6 @@ public class Cart {
     }
 
     /**
-     * @return the quantity
-     */
-    public int getQuantity() {
-        return quantity;
-    }
-
-    /**
-     * @param quantity the quantity to set
-     */
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
-    /**
      * @return the price
      */
     public Long getPrice() {
@@ -68,5 +54,19 @@ public class Cart {
      */
     public void setPrice(Long price) {
         this.price = price;
+    }
+
+    /**
+     * @return the quantity
+     */
+    public int getQuantity() {
+        return quantity;
+    }
+
+    /**
+     * @param quantity the quantity to set
+     */
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 }

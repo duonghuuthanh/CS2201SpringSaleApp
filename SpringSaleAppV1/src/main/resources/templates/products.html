@@ -1,47 +1,45 @@
-
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
         <title>Quản lý sản phẩm</title>
-        <th:block th:replace="base :: styles"></th:block>
-    </head>
-    <body>
+    <th:block th:replace="base :: bootstrap"></th:block>
+</head>
+<body>
+    <main class="container">
         <div th:replace="base :: header"></div>
-        
-        <section class="container">
-            <h1 class="text-center text-info mt-1">QUẢN LÝ SẢN PHẨM</h1>
-            
-            <form method="post" th:action="@{/add}" th:object="${product}" enctype="multipart/form-data">
-                <div class="form-floating mb-3 mt-3">
-                    <input type="text" class="form-control" th:field="*{name}" id="name" placeholder="Tên sản phẩm">
-                    <label for="name">Tên sản phẩm</label>
-                </div>
-                <div class="form-floating mb-3 mt-3">
-                    <input type="text" class="form-control" th:field="*{price}" id="price" placeholder="Gía sản phẩm">
-                    <label for="price">Gía sản phẩm</label>
-                </div>
-                <div class="form-floating">
-                <select class="form-select" id="category" th:field="*{categoryId}">
-                  <option th:each="c: ${categories}" th:value="${c.id}" th:text="${c.name}"></option>
+        <h1 class="text-center text-info mt-1">QUẢN LÝ SẢN PHẨM</h1>
+        <form  method="post" th:action="@{/add}" th:object="${product}" enctype="multipart/form-data">
+            <div class="mb-3 mt-3">
+                <label for="name" class="form-label">Tên sản phẩm: </label>
+                <input type="text" class="form-control" id="name" placeholder="Tên sản phẩm" th:field="*{name}" />
+            </div>
+            <div class="mb-3 mt-3">
+                <label for="price" class="form-label">Gía sản phẩm: </label>
+                <input type="text" class="form-control" id="price" placeholder="Gía sản phẩm" th:field="*{price}"  />
+            </div>
+            <div class="mb-3 mt-3">
+                <label for="cate" class="form-label">Danh mục sản phẩm: </label>
+                <select class="form-select" th:field="*{categoryId}" id="cate">
+                    <option th:each="c: ${categories}" th:value="${c.id}" th:text="${c.name}">1</option>
                 </select>
-                <label for="category" class="form-label">Danh mục:</label>
-                </div>
-                <div class="form-floating mb-3 mt-3">
-                    <input type="file" class="form-control" th:field="*{file}" id="price" placeholder="Ảnh sản phẩm">
-                    <label for="price">Ảnh sản phẩm</label>
-                    
-                    <img th:src="${product.image}" th:if="${product.id != null && product.image != null}" width="200" />
-                </div>
-                <div class="form-floating mt-1">
-                    <input type="hidden" th:field="*{id}" />
-                    <input type="hidden" th:field="*{image}" />
-                    
-                    <button class="btn btn-success" th:if="${product.id == null}">Thêm sản phẩm</button>
-                    <button class="btn btn-success" th:unless="${product.id == null}">Cập nhật sản phẩm</button>
-                </div>
-            </form>
-        </section>
-        
+            </div>
+            <div class="mb-3 mt-3">
+                <label for="price" class="form-label">Ảnh sản phẩm: </label>
+                <input type="file" class="form-control" th:field="*{file}"  />
+                <img th:if="${product.image != null}" th:src="${product.image}" width="200" />
+            </div>
+            <div class="mb-3 mt-3">
+                <input type="hidden" class="form-control" th:field="*{id}"  />
+                <input type="hidden" class="form-control" th:field="*{image}"  />
+                <button class="btn btn-success mt-1" type="submit">
+                    <span th:if="${product.id == null}">Thêm sản phẩm</span>
+                    <span th:unless="${product.id == null}">Cập nhật sản phẩm</span>
+                </button>
+            </div>
+        </form>
+
         <div th:replace="base :: footer"></div>
-    </body>
-</html>
+        
+        
+    </main>
+</body>

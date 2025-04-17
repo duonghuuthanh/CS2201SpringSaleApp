@@ -4,6 +4,7 @@
  */
 package com.dht.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Basic;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -17,8 +18,6 @@ import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
 import jakarta.persistence.Transient;
 import java.io.Serializable;
 import java.util.Date;
@@ -61,18 +60,22 @@ public class Product implements Serializable {
     @Column(name = "image")
     private String image;
     @Column(name = "created_date")
-    @Temporal(TemporalType.TIMESTAMP)
+  
     private Date createdDate;
     @Column(name = "active")
     private Boolean active;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "productId")
+    @JsonIgnore
     private Set<ProdTag> prodTagSet;
     @JoinColumn(name = "category_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
+    @JsonIgnore
     private Category categoryId;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "productId")
+    @JsonIgnore
     private Set<Comment> commentSet;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "productId")
+    @JsonIgnore
     private Set<OrderDetail> orderDetailSet;
     @Transient
     private MultipartFile file;

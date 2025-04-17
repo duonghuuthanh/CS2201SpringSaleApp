@@ -5,7 +5,7 @@
 package com.dht.controllers;
 
 import com.dht.pojo.Product;
-import com.dht.service.ProductService;
+import com.dht.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,24 +21,25 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class ProductController {
     @Autowired
-    private ProductService prodSer;
+    private ProductService prodService;
     
     @GetMapping("/products")
-    public String createView(Model model) {
+    public String addView(Model model) {
         model.addAttribute("product", new Product());
         return "products";
     }
     
-    @GetMapping("/products/{productId}")
-    public String updateView(Model model, @PathVariable(value = "productId") int id) {
-        model.addAttribute("product", this.prodSer.getProductById(id));
-        return "products";
-    }
-    
     @PostMapping("/add")
-    public String addProduct(@ModelAttribute(value = "product") Product p) {
-        this.prodSer.saveOrUpdate(p);
+    public String add(@ModelAttribute(value = "product") Product p) {
+        this.prodService.addOrUpdateProduct(p);
         
         return "redirect:/";
+    }
+    
+    @GetMapping("/products/{productId}")
+    public String updateView(Model model, @PathVariable(value = "productId") int id) {
+        model.addAttribute("product", this.prodService.getProductById(id));
+        
+        return "products";
     }
 }

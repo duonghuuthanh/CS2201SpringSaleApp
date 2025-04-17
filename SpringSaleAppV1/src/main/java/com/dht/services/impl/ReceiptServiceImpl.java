@@ -2,11 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.dht.service.impl;
+package com.dht.services.impl;
 
-import com.dht.pojo.Category;
-import com.dht.repository.CategoryRepository;
-import com.dht.service.CategoryService;
+import com.dht.pojo.Cart;
+import com.dht.repositories.ReceiptRepository;
+import com.dht.services.ReceiptService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,13 +16,13 @@ import org.springframework.stereotype.Service;
  * @author admin
  */
 @Service
-public class CategoryServiceImpl implements CategoryService {
+public class ReceiptServiceImpl implements ReceiptService{
     @Autowired
-    private CategoryRepository cateRepo;
+    private ReceiptRepository receiptRepo;
 
     @Override
-    public List<Category> getCates() {
-        return this.cateRepo.getCates();
+    public void addReceipt(List<Cart> carts) {
+        this.receiptRepo.addReceipt(carts);
     }
     
 }

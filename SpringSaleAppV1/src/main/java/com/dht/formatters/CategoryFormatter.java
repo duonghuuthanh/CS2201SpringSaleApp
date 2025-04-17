@@ -16,15 +16,16 @@ import org.springframework.format.Formatter;
 public class CategoryFormatter implements Formatter<Category> {
 
     @Override
-    public String print(Category cate, Locale locale) {
-        return String.valueOf(cate.getId());
+    public String print(Category category, Locale locale) {
+        return String.valueOf(category.getId());
     }
 
     @Override
     public Category parse(String cateId, Locale locale) throws ParseException {
         Category c = new Category();
         c.setId(Integer.valueOf(cateId));
+        
         return c;
     }
-
+    
 }

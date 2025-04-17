@@ -2,10 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.dht.repository.impl;
+package com.dht.repositories.impl;
 
 import com.dht.pojo.Category;
-import com.dht.repository.CategoryRepository;
+import com.dht.repositories.CategoryRepository;
 import jakarta.persistence.Query;
 import java.util.List;
 import org.hibernate.Session;
@@ -29,7 +29,6 @@ public class CategoryRepositoryImpl implements CategoryRepository {
     public List<Category> getCates() {
         Session s = this.factory.getObject().getCurrentSession();
         Query q = s.createQuery("FROM Category", Category.class);
-        
         return q.getResultList();
     }
 }

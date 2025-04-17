@@ -4,6 +4,7 @@
  */
 package com.dht.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -47,6 +48,7 @@ public class Comment implements Serializable {
     private Date createdDate;
     @JoinColumn(name = "product_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
+    @JsonIgnore
     private Product productId;
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
@@ -118,7 +120,10 @@ public class Comment implements Serializable {
             return false;
         }
         Comment other = (Comment) object;
-        return !((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id)));
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
     }
 
     @Override
