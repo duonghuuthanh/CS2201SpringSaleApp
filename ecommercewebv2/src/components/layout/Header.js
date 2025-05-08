@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { Button, Col, Container, Form, Image, InputGroup, Nav, Navbar, NavDropdown, Row } from "react-bootstrap";
 import Apis, { endpoints } from "../../configs/Apis";
 import { Link, useNavigate } from "react-router-dom";
-import { MyDispatchContext, MyUserContext } from "../../configs/Contexts";
+import { MyCartContext, MyDispatchContext, MyUserContext } from "../../configs/Contexts";
 
 const Header = () => {
     const [categories, setCategories] = useState([]);
@@ -10,6 +10,7 @@ const Header = () => {
     const [kw, setKw] = useState();
     const user = useContext(MyUserContext);
     const dispatch = useContext(MyDispatchContext);
+    const [cart,] = useContext(MyCartContext);
 
     const loadCates = async () => {
       let res = await Apis.get(endpoints['categories']);
@@ -49,6 +50,8 @@ const Header = () => {
               </Link>
               <Button onClick={() => dispatch({"type": "logout"})} variant="danger">Đăng xuất</Button>
             </>}
+
+            <Link to="/cart" className="nav-link text-danger">Giỏ hàng <span className="badge bg-danger">{cart}</span></Link>
             
           </Nav>
           <Form inline onSubmit={search}>

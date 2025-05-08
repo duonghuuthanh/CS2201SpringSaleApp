@@ -2,7 +2,7 @@ import { useContext, useRef, useState } from "react";
 import { Alert, Button, Col, Form } from "react-bootstrap";
 import Apis, { authApis, endpoints } from "../configs/Apis";
 import MySpinner from "./layout/MySpinner";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import cookie from 'react-cookies'
 import { MyDispatchContext } from "../configs/Contexts";
 
@@ -22,6 +22,7 @@ const Login = () => {
     const [loading, setLoading] = useState(false);
     const nav = useNavigate();
     const dispatch = useContext(MyDispatchContext);
+    const [q] = useSearchParams();
 
 
     const login = async (e) => {
@@ -40,7 +41,12 @@ const Login = () => {
                     "type": "login",
                     "payload": u.data
                 });
-                nav('/');
+
+                let next = q.get('next');
+                if (next)
+                    nav(next);
+                else
+                    nav('/');
             } catch (ex) {
                 console.error(ex);
             } finally {
